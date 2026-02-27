@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedSimplify - Medical Assistant Chat</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19e66f",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112118",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2c23",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display h-screen flex flex-col overflow-hidden text-slate-900 dark:text-slate-100">
+<!-- Top Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-surface-light dark:bg-surface-dark px-10 py-3 shrink-0">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary flex items-center justify-center bg-primary/10 rounded-lg">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">MedSimplify</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="flex items-center gap-9 hidden md:flex">
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary text-sm font-bold" href="#">Chat Assistant</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Upload Reports</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold transition-colors">
+<span class="truncate">Log Out</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-slate-700 shadow-sm" data-alt="User profile photo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_n7U-2ftvNhosNUXBCn02yNl0uDX_jNT7FEcbX6kJ5MPqEo6BZ7tXZOVYv5RIigzn_1KrCNcsfzMqKxpnKWSH5NrFVjaG5-GO-_60kiyUawICSNXzEokX0V-B3G7_wZgQoPUI8a37FpDx-OBbWKHAXKYJ0IFJJfGN0sMj5lnQnppp0dL8vgpA707ZaRjMXtXF4iXF8FIrmw6IeOnpI2rc3OpH2w-sybkKgozRau6hYcjhQZ4pINt8htZZEh8o3Ifuyg21G4vyoIg");'></div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- Sidebar (Hidden on mobile, visible on lg) -->
+<aside class="w-80 bg-surface-light dark:bg-surface-dark border-r border-slate-200 dark:border-slate-800 flex-col hidden lg:flex">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-slate-900 font-bold py-3 px-4 rounded-xl hover:bg-green-400 transition-colors shadow-sm shadow-primary/20">
+<span class="material-symbols-outlined">add</span>
+<span>New Consultation</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<div class="text-xs font-bold text-slate-500 uppercase tracking-wider px-2">Recent Reports</div>
+<div class="group flex items-center gap-3 p-3 rounded-lg bg-slate-100 dark:bg-slate-800/50 cursor-pointer border border-transparent hover:border-primary/30 transition-all">
+<div class="size-10 rounded-lg bg-white dark:bg-slate-700 flex items-center justify-center text-primary shadow-sm">
+<span class="material-symbols-outlined">hematology</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-semibold truncate text-slate-900 dark:text-white">Blood Work Analysis</h4>
+<p class="text-xs text-slate-500 truncate">Oct 24 • Complete Blood Count</p>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/30 cursor-pointer border border-transparent transition-all">
+<div class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 shadow-sm">
+<span class="material-symbols-outlined">radiology</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-semibold truncate text-slate-700 dark:text-slate-300">Chest X-Ray</h4>
+<p class="text-xs text-slate-500 truncate">Sep 12 • Routine Checkup</p>
+</div>
+</div>
+<div class="group flex items-center gap-3 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/30 cursor-pointer border border-transparent transition-all">
+<div class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 shadow-sm">
+<span class="material-symbols-outlined">prescriptions</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-semibold truncate text-slate-700 dark:text-slate-300">Prescription Review</h4>
+<p class="text-xs text-slate-500 truncate">Aug 05 • Antibiotics</p>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 text-slate-500 text-sm px-2">
+<span class="material-symbols-outlined text-lg">translate</span>
+<span>English, Hindi, Telugu</span>
+</div>
+</div>
+</aside>
+<!-- Main Chat Area -->
+<main class="flex-1 flex flex-col relative bg-background-light dark:bg-background-dark">
+<!-- Chat Header -->
+<div class="shrink-0 p-6 pb-2">
+<div class="max-w-4xl mx-auto w-full">
+<h1 class="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Ask about your report</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1">I can help you understand your medical results in simple language.</p>
+</div>
+</div>
+<!-- Messages Container -->
+<div class="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth">
+<div class="max-w-4xl mx-auto w-full flex flex-col gap-6">
+<!-- Date Separator -->
+<div class="flex justify-center">
+<span class="text-xs font-medium text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">Today, 10:23 AM</span>
+</div>
+<!-- AI Message -->
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-gradient-to-br from-primary to-green-600 shrink-0 flex items-center justify-center text-white shadow-md shadow-primary/20">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div class="flex flex-col gap-1 max-w-[85%] md:max-w-[70%]">
+<span class="text-xs font-semibold text-slate-500 ml-1">MedSimplify AI</span>
+<div class="p-5 rounded-2xl rounded-tl-none bg-white dark:bg-surface-dark shadow-sm border border-slate-100 dark:border-slate-800 text-slate-800 dark:text-slate-200 leading-relaxed">
+<p>Hello! I've analyzed your blood test report. I see that your glucose levels are slightly elevated at 105 mg/dL (fasting). Do you have any specific questions about this?</p>
+</div>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-start gap-4 flex-row-reverse">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 shrink-0 flex items-center justify-center overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSI5u-Bc41FI8lg48xdKyfw080sVW8VZYu45_VpHUydgBU_V2ycQuUB8Ud1rgSsYO1DGrk8bcvNV5T-hxrG_qrdkIldJBcpKN3m3HrydadfsDuQgX1ifodwlKji3ZHRKKFVRWLLSPadBWpTiRuzIuMn7la4zBXDAZb1KxxzH4XQqKpwvbp28TsGSqE8lXLMzTrIns755P3LzlYNqaxjVJevAH7U47800nWQFLJbtvgyl7mAC-AdZo5oRKgeCb-Em8Wumo9eWxO4-4"/>
+</div>
+<div class="flex flex-col gap-1 items-end max-w-[85%] md:max-w-[70%]">
+<span class="text-xs font-semibold text-slate-500 mr-1">You</span>
+<div class="p-5 rounded-2xl rounded-tr-none bg-primary text-slate-900 shadow-md shadow-primary/20 leading-relaxed font-medium">
+<p>Yes, should I be worried about the glucose level? Does this mean I am diabetic?</p>
+</div>
+</div>
+</div>
+<!-- AI Message -->
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-gradient-to-br from-primary to-green-600 shrink-0 flex items-center justify-center text-white shadow-md shadow-primary/20">
+<span class="material-symbols-outlined">smart_toy</span>
+</div>
+<div class="flex flex-col gap-1 max-w-[85%] md:max-w-[70%]">
+<span class="text-xs font-semibold text-slate-500 ml-1">MedSimplify AI</span>
+<div class="p-5 rounded-2xl rounded-tl-none bg-white dark:bg-surface-dark shadow-sm border border-slate-100 dark:border-slate-800 text-slate-800 dark:text-slate-200 leading-relaxed">
+<p class="mb-3">It's understandable to be concerned. Here is a simple breakdown:</p>
+<ul class="list-disc pl-5 space-y-2 mb-3">
+<li><strong>Normal:</strong> Below 100 mg/dL</li>
+<li><strong>Prediabetes:</strong> 100 to 125 mg/dL</li>
+<li><strong>Diabetes:</strong> 126 mg/dL or higher</li>
+</ul>
+<p>Your level of 105 mg/dL falls into the <strong>prediabetes</strong> range. It doesn't automatically mean you have diabetes, but it's a signal to watch your diet and lifestyle. It would be best to discuss this with your doctor for a complete diagnosis.</p>
+</div>
+<div class="flex gap-2 mt-1 ml-1">
+<button class="text-xs flex items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[16px]">thumb_up</span>
+                                    Helpful
+                                </button>
+<button class="text-xs flex items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+                                    Copy
+                                </button>
+</div>
+</div>
+</div>
+<!-- Loading State (Visual placeholder) -->
+<!-- <div class="flex items-start gap-4 opacity-50">
+                        <div class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 shrink-0 flex items-center justify-center">
+                            <div class="size-2 bg-slate-400 rounded-full animate-bounce"></div>
+                        </div>
+                    </div> -->
+</div>
+</div>
+<!-- Input Area & Suggestions -->
+<div class="shrink-0 p-4 md:p-6 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark z-10">
+<div class="max-w-4xl mx-auto w-full flex flex-col gap-4">
+<!-- Suggested Questions Chips -->
+<div class="flex flex-wrap gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-primary/50 transition-all shadow-sm whitespace-nowrap">
+<span class="material-symbols-outlined text-primary text-lg">medical_services</span>
+                            What lifestyle changes should I make?
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-primary/50 transition-all shadow-sm whitespace-nowrap">
+<span class="material-symbols-outlined text-primary text-lg">restaurant</span>
+                            Foods to avoid with high glucose
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 rounded-full text-sm text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-primary/50 transition-all shadow-sm whitespace-nowrap">
+<span class="material-symbols-outlined text-primary text-lg">translate</span>
+                            Explain in Hindi
+                        </button>
+</div>
+<!-- Input Box -->
+<div class="relative flex items-end gap-2 bg-white dark:bg-surface-dark p-2 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm focus-within:ring-2 focus-within:ring-primary/50 focus-within:border-primary transition-all">
+<button class="p-3 text-slate-400 hover:text-primary transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" title="Upload another report">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent border-0 focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400 py-3 max-h-32 resize-none" placeholder="Ask a follow-up question..." rows="1" style="min-height: 48px;"></textarea>
+<button class="p-3 text-slate-400 hover:text-primary transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" title="Voice Input">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<button class="p-3 bg-primary text-slate-900 rounded-2xl hover:bg-green-400 transition-colors shadow-sm shadow-primary/30" title="Send message">
+<span class="material-symbols-outlined fill-current">send</span>
+</button>
+</div>
+<div class="text-center">
+<p class="text-[11px] text-slate-400 dark:text-slate-500">
+                            MedSimplify can make mistakes. Please consult with your doctor for medical advice.
+                        </p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

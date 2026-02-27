@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="hi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Health Insights Dashboard - MedSimplify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Noto+Sans+Devanagari:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19e66f",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112118",
+                        "neutral-soft": "#e8efeb",
+                        "text-main": "#112118",
+                        "text-muted": "#526b5d"
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "Noto Sans Devanagari", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', 'Noto Sans Devanagari', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-neutral-soft px-10 py-4 bg-white dark:bg-background-dark">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-primary">
+<div class="size-8">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 4H17.3334V17.3334H30.6666V30.6666H44V44H4V4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-text-main dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">MedSimplify</h2>
+</div>
+<label class="flex flex-col min-w-64 h-10">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-text-muted flex border-none bg-neutral-soft items-center justify-center pl-4 rounded-l-xl">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-neutral-soft focus:ring-0 h-full placeholder:text-text-muted px-4 rounded-r-xl text-base font-normal" placeholder="रिपोर्ट खोजें..." value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-8">
+<a class="text-text-main dark:text-slate-100 text-sm font-medium hover:text-primary transition-colors" href="#">सारांश</a>
+<a class="text-text-main dark:text-slate-100 text-sm font-medium hover:text-primary transition-colors" href="#">रिपोर्ट</a>
+<a class="text-text-main dark:text-slate-100 text-sm font-medium hover:text-primary transition-colors" href="#">परामर्श</a>
+<a class="text-text-main dark:text-slate-100 text-sm font-medium hover:text-primary transition-colors" href="#">सेटिंग्स</a>
+</nav>
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-xl h-10 px-4 bg-neutral-soft text-text-main text-sm font-bold border-none">
+<span class="truncate">हिन्दी (HI)</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="प्रोफ़ाइल चित्र" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCrPiI-tmgbLtCo2a8F4EEk3s-DWZ7kqliC4Po8D1BVq10zG-GH1HvMbbtQpNC6_uWmRmVZHGPqeF2WiV7V1dBvvAglY3ClbXmxmfqlAW1wHx8AgXNGuIsrBRDEyYNw6v8lMIq242aqJMvzYdzVje2mfOEmTK7oSbsqeASVZhnQZ7-Q-OVMU-Al9tRUZufO2DFvWfkNEv_1wHAsRCdUKy6EJ0IxEdWVlDmq4zibjnR3A69YGtx9Up503N8Tnd1hgyNtNtW9oFTrdpY");'></div>
+</div>
+</header>
+<main class="flex flex-col px-10 md:px-20 lg:px-40 py-8 gap-8 max-w-[1400px] mx-auto w-full">
+<!-- Breadcrumbs & Header -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-text-muted text-sm font-medium">
+<a class="hover:text-primary" href="#">मुख्य पृष्ठ</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-text-main">स्वास्थ्य अंतर्दृष्टि</span>
+</div>
+<div class="flex flex-wrap justify-between items-end gap-4">
+<div class="flex flex-col gap-2">
+<h1 class="text-text-main dark:text-slate-100 text-4xl font-bold tracking-tight">स्वास्थ्य अंतर्दृष्टि डैशबोर्ड</h1>
+<p class="text-text-muted text-lg">आपकी चिकित्सा रिपोर्ट का सरल और स्पष्ट विश्लेषण</p>
+</div>
+<button class="flex items-center gap-2 cursor-pointer rounded-xl h-12 px-6 bg-primary text-text-main text-sm font-bold shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">download</span>
+<span>रिपोर्ट डाउनलोड करें</span>
+</button>
+</div>
+</div>
+<!-- Language / Difficulty Toggle Section -->
+<div class="flex flex-wrap items-center justify-between border-b border-neutral-soft pb-4">
+<div class="flex gap-4">
+<button class="flex flex-col items-center justify-center border-b-2 border-transparent text-text-muted pb-2 px-4 font-bold hover:text-text-main transition-all">EN</button>
+<button class="flex flex-col items-center justify-center border-b-2 border-primary text-text-main pb-2 px-4 font-bold">HI</button>
+<button class="flex flex-col items-center justify-center border-b-2 border-transparent text-text-muted pb-2 px-4 font-bold hover:text-text-main transition-all">TE</button>
+</div>
+<div class="flex items-center gap-3 bg-white dark:bg-background-dark p-2 rounded-xl border border-neutral-soft">
+<span class="text-sm font-medium text-text-muted">बच्चों की तरह समझाएं (ELI10)</span>
+<div class="relative inline-block w-12 h-6 transition duration-200 ease-in-out bg-primary rounded-full cursor-pointer">
+<div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform translate-x-6"></div>
+</div>
+</div>
+</div>
+<!-- Main Summary Card -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row border border-neutral-soft">
+<div class="md:w-1/3 h-48 md:h-auto bg-primary/10 flex items-center justify-center">
+<div class="text-center p-6">
+<div class="size-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3">
+<span class="material-symbols-outlined text-primary text-4xl">check_circle</span>
+</div>
+<p class="text-text-main font-bold text-xl">सामान्य</p>
+<p class="text-text-muted text-sm italic">स्थिति: सामान्य</p>
+</div>
+</div>
+<div class="p-8 flex-1 flex flex-col justify-between">
+<div>
+<h3 class="text-text-main dark:text-slate-100 text-2xl font-bold mb-3">आपके स्वास्थ्य का सारांश</h3>
+<p class="text-text-muted text-lg leading-relaxed mb-6">
+                                        नमस्ते! आपकी सभी जांच रिपोर्ट सामान्य हैं। घबराने की कोई बात नहीं है। आपका हीमोग्लोबिन और शुगर लेवल बिल्कुल सही सीमा में है। बस स्वस्थ आहार और नियमित व्यायाम जारी रखें।
+                                    </p>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-primary/20 text-text-main font-bold py-3 px-4 rounded-xl hover:bg-primary/30 transition-colors">विस्तार से देखें</button>
+<button class="flex-1 bg-neutral-soft text-text-main font-bold py-3 px-4 rounded-xl hover:bg-neutral-200 transition-colors">डॉक्टर से पूछें</button>
+</div>
+</div>
+</div>
+<!-- Biomarker Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Hemoglobin Card -->
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-neutral-soft shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-text-muted text-sm font-medium">हीमोग्लोबिन (Hb)</p>
+<h4 class="text-text-main dark:text-slate-100 text-2xl font-bold">14.2 g/dL</h4>
+</div>
+<span class="bg-primary/20 text-text-main text-xs font-bold px-3 py-1 rounded-full uppercase">सामान्य</span>
+</div>
+<div class="w-full bg-neutral-soft h-2 rounded-full mb-3">
+<div class="bg-primary h-2 rounded-full" style="width: 70%"></div>
+</div>
+<p class="text-text-muted text-sm">यह आपके रक्त में ऑक्सीजन ले जाने की क्षमता को दर्शाता है। आपकी रिपोर्ट बहुत अच्छी है।</p>
+</div>
+<!-- Glucose Card -->
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-neutral-soft shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div>
+<p class="text-text-muted text-sm font-medium">फास्टिंग शुगर</p>
+<h4 class="text-text-main dark:text-slate-100 text-2xl font-bold">92 mg/dL</h4>
+</div>
+<span class="bg-primary/20 text-text-main text-xs font-bold px-3 py-1 rounded-full uppercase">सामान्य</span>
+</div>
+<div class="w-full bg-neutral-soft h-2 rounded-full mb-3">
+<div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+</div>
+<p class="text-text-muted text-sm">आपके रक्त में शुगर का स्तर संतुलित है। यह मधुमेह (डायबिटीज) न होने का संकेत है।</p>
+</div>
+</div>
+</div>
+<!-- Risk Heatmap & Recommendations -->
+<div class="flex flex-col gap-6">
+<div class="bg-white dark:bg-slate-800 p-6 rounded-xl border border-neutral-soft shadow-sm">
+<h3 class="text-text-main dark:text-slate-100 text-lg font-bold mb-4">जोखिम हीटमैप</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<span class="text-text-muted text-sm">हृदय रोग</span>
+<div class="flex gap-1">
+<div class="size-6 rounded bg-primary"></div>
+<div class="size-6 rounded bg-neutral-soft"></div>
+<div class="size-6 rounded bg-neutral-soft"></div>
+<div class="size-6 rounded bg-neutral-soft"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-text-muted text-sm">मधुमेह</span>
+<div class="flex gap-1">
+<div class="size-6 rounded bg-primary"></div>
+<div class="size-6 rounded bg-neutral-soft"></div>
+<div class="size-6 rounded bg-neutral-soft"></div>
+<div class="size-6 rounded bg-neutral-soft"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-text-muted text-sm">हाइपरटेंशन</span>
+<div class="flex gap-1">
+<div class="size-6 rounded bg-primary"></div>
+<div class="size-6 rounded bg-primary/40"></div>
+<div class="size-6 rounded bg-neutral-soft"></div>
+<div class="size-6 rounded bg-neutral-soft"></div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-neutral-soft">
+<p class="text-xs text-text-muted text-center uppercase tracking-widest font-bold">कम जोखिम <span class="mx-2">→</span> मध्यम <span class="mx-2">→</span> उच्च</p>
+</div>
+</div>
+<!-- Recommendations -->
+<div class="bg-primary/5 p-6 rounded-xl border border-primary/20">
+<h3 class="text-text-main text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+                                हमारे सुझाव
+                            </h3>
+<ul class="flex flex-col gap-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1">task_alt</span>
+<p class="text-text-muted text-sm">रोजाना 30 मिनट पैदल चलें</p>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1">task_alt</span>
+<p class="text-text-muted text-sm">पानी का सेवन बढ़ाएं (दिन में 3-4 लीटर)</p>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-sm mt-1">task_alt</span>
+<p class="text-text-muted text-sm">जंक फूड और चीनी का सेवन कम करें</p>
+</li>
+</ul>
+<button class="w-full mt-6 py-3 bg-white text-text-main font-bold text-sm rounded-xl border border-primary/20 shadow-sm hover:shadow-md transition-shadow">
+                                व्यक्तिगत स्वास्थ्य योजना प्राप्त करें
+                            </button>
+</div>
+</div>
+</div>
+<!-- Footer disclaimer -->
+<footer class="mt-8 pb-12 border-t border-neutral-soft pt-8 text-center">
+<p class="text-text-muted text-xs max-w-2xl mx-auto leading-relaxed">
+                        अस्वीकरण: MedSimplify द्वारा प्रदान किया गया विश्लेषण केवल सूचना के उद्देश्यों के लिए है और यह पेशेवर चिकित्सा सलाह, निदान या उपचार का विकल्प नहीं है। कृपया कोई भी निर्णय लेने से पहले अपने डॉक्टर से सलाह लें।
+                    </p>
+</footer>
+</main>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedSimplify - Health Trends Timeline</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19e66f",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112118",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col group/design-root">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-white">
+<div class="size-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">health_metrics</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">MedSimplify</h2>
+</div>
+<nav class="flex items-center gap-9 hidden md:flex">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">My Reports</a>
+<a class="text-primary text-sm font-medium leading-normal" href="#">Trends</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 !h-10 max-w-64 hidden sm:flex">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full bg-slate-100 dark:bg-slate-800 group focus-within:ring-2 focus-within:ring-primary/50 transition-all">
+<div class="text-slate-500 dark:text-slate-400 flex border-none items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-slate-900 dark:text-white focus:outline-0 focus:ring-0 border-none bg-transparent focus:border-none h-full placeholder:text-slate-500 dark:placeholder:text-slate-400 px-4 rounded-l-none border-l-0 pl-2 text-sm font-normal leading-normal" placeholder="Search trends..." value=""/>
+</div>
+</label>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-primary hover:bg-green-400 transition-colors text-slate-900 text-sm font-bold leading-normal tracking-[0.015em] shadow-sm">
+<span class="truncate">Upload Report</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-white dark:ring-slate-800 shadow-md" data-alt="User profile portrait of a woman" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCe3wk9obLXTlnGaSzA46G0-c_ed4eBw_Q-R3EwogCs0QlusQ6pS7sgz3R1ApKvDg_yPBjBCW0acHHpQKbsruSL9dtitmlFEId4kauC2qe8kfS_nJc2uJpiiGp1TftXxjd3TTEKRIl-orK-Bg_t19Qz_qsUrZW21E-bEwHEg_8n92YPxiHp2DAjEdJwu3hH47zv1nnOSmQ28RrG5Sex9pxlchJFoi37MxYqSaqIKv25WtyIan1nT0NPQBCGXaDTHtCdYK52-gDEOpg");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 md:px-10 py-8 flex justify-center">
+<div class="w-full max-w-5xl flex flex-col gap-8">
+<!-- Page Title Area -->
+<div class="flex flex-wrap justify-between items-end gap-6">
+<div class="flex min-w-72 flex-col gap-2">
+<h1 class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Health Trends Timeline</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal leading-normal">Track your biomarkers over time with simplified insights.</p>
+</div>
+<!-- Biomarker Selector -->
+<div class="flex w-full sm:w-auto flex-col gap-2">
+<label class="text-slate-900 dark:text-white text-sm font-semibold leading-normal ml-1">Select Biomarker</label>
+<div class="relative">
+<select class="appearance-none flex w-full sm:w-[280px] cursor-pointer rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white px-4 py-3 pr-10 text-base font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all">
+<option value="ldl">Cholesterol (LDL)</option>
+<option value="hdl">Cholesterol (HDL)</option>
+<option value="glucose">Blood Glucose</option>
+<option value="vitd">Vitamin D</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart Card -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex flex-col gap-6 h-full">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary">cardiology</span>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wider">Current Level</p>
+</div>
+<div class="flex items-baseline gap-3">
+<p class="text-slate-900 dark:text-white text-[40px] font-bold leading-tight">110 <span class="text-xl font-medium text-slate-400">mg/dL</span></p>
+<div class="flex items-center gap-1 px-2 py-1 bg-green-100 dark:bg-green-900/30 rounded-lg">
+<span class="material-symbols-outlined text-green-600 dark:text-green-400 text-sm">trending_down</span>
+<p class="text-green-700 dark:text-green-400 text-sm font-bold">-5%</p>
+</div>
+</div>
+<p class="text-slate-400 dark:text-slate-500 text-sm mt-1">Last updated: May 22, 2024</p>
+</div>
+<div class="hidden sm:flex gap-2">
+<button class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">3M</button>
+<button class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-primary text-slate-900 shadow-sm">6M</button>
+<button class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">1Y</button>
+</div>
+</div>
+<div class="relative flex-1 min-h-[250px] w-full mt-4">
+<!-- Simplified Graph Representation -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 800 300">
+<defs>
+<lineargradient id="gradientLine" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#19e66f" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#19e66f" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<line class="text-slate-100 dark:text-slate-800" stroke="currentColor" stroke-width="1" x1="0" x2="800" y1="250" y2="250"></line>
+<line class="text-slate-100 dark:text-slate-800" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="800" y1="170" y2="170"></line>
+<line class="text-slate-100 dark:text-slate-800" stroke="currentColor" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="800" y1="90" y2="90"></line>
+<!-- Area -->
+<path d="M50 80 C 150 80, 250 140, 380 140 S 650 100, 750 180 V 300 H 50 Z" fill="url(#gradientLine)"></path>
+<!-- Line -->
+<path d="M50 80 C 150 80, 250 140, 380 140 S 650 100, 750 180" fill="none" stroke="#19e66f" stroke-linecap="round" stroke-width="4"></path>
+<!-- Points -->
+<circle class="fill-white dark:fill-slate-900 stroke-primary" cx="50" cy="80" r="8" stroke-width="3"></circle>
+<circle class="fill-white dark:fill-slate-900 stroke-primary" cx="380" cy="140" r="8" stroke-width="3"></circle>
+<circle class="fill-white dark:fill-slate-900 stroke-primary" cx="750" cy="180" r="8" stroke-width="3"></circle>
+<!-- Tooltips (Static for design) -->
+<g transform="translate(40, 45)">
+<rect class="fill-slate-800 dark:fill-white" height="24" rx="6" width="60"></rect>
+<text class="fill-white dark:fill-slate-900 text-xs font-bold" text-anchor="middle" x="30" y="16">145 mg</text>
+</g>
+<g transform="translate(350, 105)">
+<rect class="fill-slate-800 dark:fill-white" height="24" rx="6" width="60"></rect>
+<text class="fill-white dark:fill-slate-900 text-xs font-bold" text-anchor="middle" x="30" y="16">128 mg</text>
+</g>
+<g transform="translate(720, 145)">
+<rect class="fill-slate-800 dark:fill-white" height="24" rx="6" width="60"></rect>
+<text class="fill-white dark:fill-slate-900 text-xs font-bold" text-anchor="middle" x="30" y="16">110 mg</text>
+</g>
+</svg>
+</div>
+<div class="flex justify-between px-4 mt-2 border-t border-slate-100 dark:border-slate-800 pt-4">
+<div class="text-center">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-semibold uppercase">Jan 15</p>
+</div>
+<div class="text-center">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-semibold uppercase">Mar 10</p>
+</div>
+<div class="text-center">
+<p class="text-slate-400 dark:text-slate-500 text-xs font-semibold uppercase">May 22</p>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Insight Card -->
+<div class="flex flex-col gap-6">
+<div class="bg-gradient-to-br from-slate-800 to-slate-900 dark:from-slate-800 dark:to-black rounded-2xl p-6 shadow-lg text-white relative overflow-hidden flex-1 flex flex-col">
+<!-- Abstract decorative shape -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<h3 class="text-xl font-bold tracking-tight">AI Trend Commentary</h3>
+</div>
+<div class="bg-white/5 backdrop-blur-md rounded-xl p-5 border border-white/10 mb-4">
+<p class="text-slate-200 text-base leading-relaxed">
+                                            "Your levels are improving steadily. Your LDL cholesterol has decreased by <span class="text-primary font-bold">5%</span> since your last report, moving closer to the optimal range."
+                                        </p>
+</div>
+<div class="space-y-3">
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">check_circle</span>
+<div>
+<p class="font-semibold text-sm">Consistent Progress</p>
+<p class="text-slate-400 text-xs mt-0.5">You've maintained lower levels for 2 consecutive reports.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-primary text-xl mt-0.5">recommend</span>
+<div>
+<p class="font-semibold text-sm">Action Item</p>
+<p class="text-slate-400 text-xs mt-0.5">Keep up the good work with your diet and exercise routine.</p>
+</div>
+</div>
+</div>
+</div>
+<button class="mt-auto w-full py-3 rounded-xl bg-white text-slate-900 font-bold text-sm hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
+<span>View Detailed Analysis</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Additional Metrics / Context -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Optimal Range</span>
+<span class="material-symbols-outlined text-slate-400 text-lg">info</span>
+</div>
+<p class="text-slate-900 dark:text-white text-xl font-bold">Under 100 <span class="text-sm font-normal text-slate-400">mg/dL</span></p>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Highest Recorded</span>
+<span class="material-symbols-outlined text-slate-400 text-lg">history</span>
+</div>
+<p class="text-slate-900 dark:text-white text-xl font-bold">145 <span class="text-sm font-normal text-slate-400">mg/dL</span></p>
+<p class="text-xs text-slate-400 mt-2">Recorded on Jan 15, 2024</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Risk Assessment</span>
+<span class="material-symbols-outlined text-slate-400 text-lg">verified_user</span>
+</div>
+<p class="text-yellow-600 dark:text-yellow-400 text-xl font-bold">Moderate</p>
+<p class="text-xs text-slate-400 mt-2">Based on current trajectory</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col justify-center items-center gap-2 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group">
+<div class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-primary/20 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300 group-hover:text-primary">add</span>
+</div>
+<p class="text-slate-900 dark:text-white font-bold text-sm">Add New Reading</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
