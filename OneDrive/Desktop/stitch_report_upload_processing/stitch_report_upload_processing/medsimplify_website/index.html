@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MedSimplify — Unified Health Platform</title>
+  <meta name="description" content="AI-powered medical report simplifier. Understand your health in plain language."/>
+  <link rel="stylesheet" href="styles.css"/>
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <!-- Tailwind (for the dashboard home page we build inline) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#19e66f",
+            "primary-dark": "#14b858",
+            "bg-light": "#f4f7f5",
+            "bg-dark": "#0e1a13",
+            "surface-dark": "#1a2c23",
+          },
+          fontFamily: { display: ["Lexend", "sans-serif"] },
+        },
+      },
+    };
+  </script>
+</head>
+<body>
+
+<!-- ===================== SIDEBAR ===================== -->
+<div id="app-shell">
+<aside id="sidebar">
+
+  <!-- Logo -->
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-icon">
+      <span class="material-symbols-outlined" style="font-size:20px">medical_services</span>
+    </div>
+    <span class="sidebar-logo-text">MedSimplify</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav" aria-label="Main Navigation">
+
+    <!-- Main -->
+    <div class="sidebar-section-label">Main</div>
+    <a class="nav-item active" data-page="dashboard-home" id="nav-dashboard-home" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">grid_view</span>
+      <span class="nav-label">Dashboard Home</span>
+    </a>
+    <a class="nav-item" data-page="upload" id="nav-upload" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">upload_file</span>
+      <span class="nav-label">Upload Report</span>
+    </a>
+    <a class="nav-item" data-page="chat" id="nav-chat" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">forum</span>
+      <span class="nav-label">AI Chat Assistant</span>
+    </a>
+    <a class="nav-item" data-page="chat-interface" id="nav-chat-interface" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">chat_bubble</span>
+      <span class="nav-label">Chat Interface</span>
+    </a>
+
+    <!-- Health Insights -->
+    <div class="sidebar-section-label" style="margin-top:8px">Health Insights</div>
+    <a class="nav-item" data-page="dashboard" id="nav-dashboard" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">monitor_heart</span>
+      <span class="nav-label">Health Dashboard</span>
+      <span class="nav-badge">!</span>
+    </a>
+    <a class="nav-item" data-page="trends" id="nav-trends" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">trending_up</span>
+      <span class="nav-label">Health Trends</span>
+    </a>
+    <a class="nav-item" data-page="critical" id="nav-critical" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">emergency</span>
+      <span class="nav-label">Critical Dashboard</span>
+      <span class="nav-badge">3</span>
+    </a>
+    <a class="nav-item" data-page="biomarker" id="nav-biomarker" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">biotech</span>
+      <span class="nav-label">Biomarker Detail</span>
+    </a>
+    <a class="nav-item" data-page="hindi" id="nav-hindi" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">translate</span>
+      <span class="nav-label">Hindi Results (हिन्दी)</span>
+    </a>
+
+    <!-- Tools -->
+    <div class="sidebar-section-label" style="margin-top:8px">Tools</div>
+    <a class="nav-item" data-page="voice" id="nav-voice" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">surround_sound</span>
+      <span class="nav-label">Voice Mode</span>
+    </a>
+    <a class="nav-item" data-page="high-contrast" id="nav-high-contrast" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">contrast</span>
+      <span class="nav-label">High Contrast Mode</span>
+    </a>
+
+    <!-- Account -->
+    <div class="sidebar-section-label" style="margin-top:8px">Account</div>
+    <a class="nav-item" data-page="settings" id="nav-settings" role="button" tabindex="0">
+      <span class="material-symbols-outlined nav-icon">settings</span>
+      <span class="nav-label">Settings</span>
+    </a>
+
+  </nav>
+
+  <!-- Sidebar Footer - Collapse Btn -->
+  <div class="sidebar-footer">
+    <button class="nav-item" id="sidebar-collapse-btn" style="width:100%;border:none;background:none;cursor:pointer;" title="Collapse sidebar (Ctrl+B)">
+      <span class="material-symbols-outlined nav-icon">chevron_left</span>
+      <span class="nav-label" style="font-size:12px">Collapse</span>
+    </button>
+  </div>
+
+</aside>
+
+<!-- ===================== SIDEBAR OVERLAY (mobile) ===================== -->
+<div id="sidebar-overlay" aria-hidden="true"></div>
+
+<!-- ===================== MAIN WRAPPER ===================== -->
+<div id="main-wrapper">
+
+  <!-- ===== TOPBAR ===== -->
+  <header id="topbar" role="banner">
+    <button class="topbar-hamburger" id="hamburger" aria-label="Toggle sidebar" title="Toggle sidebar">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+
+    <div class="topbar-breadcrumb">
+      <span class="material-symbols-outlined" style="font-size:16px;color:var(--primary)">home</span>
+      <span style="color:var(--text-muted-light);font-size:13px"> / </span>
+      <span class="page-title" id="page-title">Dashboard Home</span>
+    </div>
+
+    <div class="topbar-actions">
+      <!-- Language Switcher -->
+      <button class="topbar-btn lang-btn lang-choice active-btn" data-lang="EN" title="English">EN</button>
+      <button class="topbar-btn lang-btn lang-choice" data-lang="HI" title="हिन्दी">HI</button>
+      <button class="topbar-btn lang-btn lang-choice" data-lang="TE" title="తెలుగు">TE</button>
+
+      <!-- Dark Toggle -->
+      <button class="topbar-btn" id="dark-toggle" title="Toggle dark mode (Ctrl+D)">
+        <span class="material-symbols-outlined" style="font-size:18px">dark_mode</span>
+      </button>
+
+      <!-- Notification -->
+      <button class="topbar-btn" title="Notifications" style="position:relative;">
+        <span class="material-symbols-outlined" style="font-size:18px">notifications</span>
+        <span style="position:absolute;top:6px;right:6px;width:8px;height:8px;background:#e53935;border-radius:50%;border:1.5px solid white;"></span>
+      </button>
+
+      <!-- User Avatar -->
+      <button class="avatar-btn" title="Your Profile" style="padding:0;border-radius:50%;overflow:hidden;width:36px;height:36px;border:2px solid var(--primary);cursor:pointer;">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_n7U-2ftvNhosNUXBCn02yNl0uDX_jNT7FEcbX6kJ5MPqEo6BZ7tXZOVYv5RIigzn_1KrCNcsfzMqKxpnKWSH5NrFVjaG5-GO-_60kiyUawICSNXzEokX0V-B3G7_wZgQoPUI8a37FpDx-OBbWKHAXKYJ0IFJJfGN0sMj5lnQnppp0dL8vgpA707ZaRjMXtXF4iXF8FIrmw6IeOnpI2rc3OpH2w-sybkKgozRau6hYcjhQZ4pINt8htZZEh8o3Ifuyg21G4vyoIg" alt="Profile" style="width:100%;height:100%;object-fit:cover;"/>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== PAGE CONTENT ===================== -->
+  <main id="page-content">
+
+    <!-- ===================================
+         PAGE: Dashboard Home (Built-in)
+    ==================================== -->
+    <section class="page-section active" id="page-dashboard-home">
+      <div style="padding:28px 32px;max-width:1280px;margin:0 auto;">
+
+        <!-- Welcome Banner -->
+        <div style="background:linear-gradient(135deg,#19e66f 0%,#14b858 60%,#0d7a3e 100%);border-radius:20px;padding:32px 36px;margin-bottom:28px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-30px;right:-30px;width:180px;height:180px;background:rgba(255,255,255,0.1);border-radius:50%;"></div>
+          <div style="position:absolute;bottom:-50px;right:80px;width:120px;height:120px;background:rgba(255,255,255,0.08);border-radius:50%;"></div>
+          <div style="position:relative;z-index:1;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span class="material-symbols-outlined" style="color:rgba(0,0,0,0.6);font-size:18px">waving_hand</span>
+              <span style="color:rgba(0,0,0,0.65);font-size:14px;font-weight:600;">Welcome back!</span>
+            </div>
+            <h1 style="font-size:32px;font-weight:900;color:#0a1f12;margin-bottom:6px;">Your Health Dashboard</h1>
+            <p style="color:rgba(0,0,0,0.65);font-size:15px;max-width:480px;">Your latest blood work from <strong>Oct 24, 2023</strong> has been analyzed. 3 items need your attention.</p>
+            <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+              <button onclick="window.navigateDashboard('upload')" style="background:#0a1f12;color:white;border:none;padding:12px 24px;border-radius:12px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:transform 0.15s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                <span class="material-symbols-outlined" style="font-size:18px;">upload_file</span> Upload New Report
+              </button>
+              <button onclick="window.navigateDashboard('chat')" style="background:rgba(0,0,0,0.15);color:#0a1f12;border:2px solid rgba(0,0,0,0.25);padding:12px 24px;border-radius:12px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;backdrop-filter:blur(4px);">
+                <span class="material-symbols-outlined" style="font-size:18px;">forum</span> Ask AI Assistant
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px;">
+          <div class="home-stat-card" onclick="window.navigateDashboard('dashboard')">
+            <div class="stat-icon"><span class="material-symbols-outlined">favorite</span></div>
+            <div class="stat-value" style="color:#e53935;">42</div>
+            <div class="stat-label">Health Score (Critical)</div>
+          </div>
+          <div class="home-stat-card" onclick="window.navigateDashboard('dashboard')">
+            <div class="stat-icon" style="background:rgba(229,57,53,0.1);color:#e53935;"><span class="material-symbols-outlined">warning</span></div>
+            <div class="stat-value">3</div>
+            <div class="stat-label">Critical Biomarkers</div>
+          </div>
+          <div class="home-stat-card" onclick="window.navigateDashboard('trends')">
+            <div class="stat-icon"><span class="material-symbols-outlined">trending_down</span></div>
+            <div class="stat-value" style="color:#19e66f;">-5%</div>
+            <div class="stat-label">LDL Change (6 months)</div>
+          </div>
+          <div class="home-stat-card" onclick="window.navigateDashboard('upload')">
+            <div class="stat-icon"><span class="material-symbols-outlined">description</span></div>
+            <div class="stat-value">4</div>
+            <div class="stat-label">Reports Analyzed</div>
+          </div>
+        </div>
+
+        <!-- Quick Access Grid -->
+        <h2 style="font-size:20px;font-weight:800;margin-bottom:16px;color:var(--text-primary-light);" class="dark:text-white">Quick Access</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:28px;">
+
+          <div class="page-grid-card" data-nav-to="upload">
+            <div class="card-icon" style="background:linear-gradient(135deg,rgba(25,230,111,0.15),rgba(20,184,88,0.08));color:#14b858;">
+              <span class="material-symbols-outlined">upload_file</span>
+            </div>
+            <div class="card-title">Upload Report</div>
+            <div class="card-desc">Upload PDF, JPG or PNG medical reports for AI analysis.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="chat">
+            <div class="card-icon" style="background:rgba(59,130,246,0.1);color:#2563eb;">
+              <span class="material-symbols-outlined">forum</span>
+            </div>
+            <div class="card-title">AI Chat Assistant</div>
+            <div class="card-desc">Ask questions about your reports in plain English.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="dashboard">
+            <div class="card-icon" style="background:rgba(229,57,53,0.1);color:#e53935;">
+              <span class="material-symbols-outlined">monitor_heart</span>
+            </div>
+            <div class="card-title">Health Dashboard</div>
+            <div class="card-desc">Critical biomarker status, risk assessment, and health score.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="trends">
+            <div class="card-icon" style="background:rgba(139,92,246,0.1);color:#7c3aed;">
+              <span class="material-symbols-outlined">trending_up</span>
+            </div>
+            <div class="card-title">Health Trends</div>
+            <div class="card-desc">Track biomarkers over time with AI-powered commentary.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="voice">
+            <div class="card-icon" style="background:rgba(245,158,11,0.1);color:#d97706;">
+              <span class="material-symbols-outlined">surround_sound</span>
+            </div>
+            <div class="card-title">Voice Mode</div>
+            <div class="card-desc">Listen to your report summary with karaoke-style highlighting.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="hindi">
+            <div class="card-icon" style="background:rgba(244,63,94,0.1);color:#e11d48;">
+              <span class="material-symbols-outlined">translate</span>
+            </div>
+            <div class="card-title">हिन्दी Results</div>
+            <div class="card-desc">View your health insights dashboard in Hindi language.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="biomarker">
+            <div class="card-icon" style="background:rgba(16,185,129,0.1);color:#059669;">
+              <span class="material-symbols-outlined">biotech</span>
+            </div>
+            <div class="card-title">Biomarker Detail</div>
+            <div class="card-desc">Deep-dive ELI10 explanation of each biomarker.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="critical">
+            <div class="card-icon" style="background:rgba(239,68,68,0.1);color:#dc2626;">
+              <span class="material-symbols-outlined">emergency</span>
+            </div>
+            <div class="card-title">Critical Dashboard</div>
+            <div class="card-desc">Mobile-optimized view for critical health alerts.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="high-contrast">
+            <div class="card-icon" style="background:rgba(15,23,42,0.08);color:#334155;">
+              <span class="material-symbols-outlined">contrast</span>
+            </div>
+            <div class="card-title">High Contrast</div>
+            <div class="card-desc">WCAG AAA compliant design for maximum accessibility.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+          <div class="page-grid-card" data-nav-to="settings">
+            <div class="card-icon" style="background:rgba(99,102,241,0.1);color:#4f46e5;">
+              <span class="material-symbols-outlined">settings</span>
+            </div>
+            <div class="card-title">Settings</div>
+            <div class="card-desc">Font size, language, voice speed, accessibility options.</div>
+            <span class="material-symbols-outlined card-arrow">arrow_forward</span>
+          </div>
+
+        </div>
+
+        <!-- Recent Activity -->
+        <h2 style="font-size:20px;font-weight:800;margin-bottom:16px;color:var(--text-primary-light);">Recent Activity</h2>
+        <div style="background:var(--surface-light);border:1px solid var(--border-light);border-radius:16px;padding:8px 16px;">
+          <div class="activity-item" onclick="window.navigateDashboard('dashboard')">
+            <div class="activity-dot" style="background:#e53935;"></div>
+            <span class="material-symbols-outlined" style="color:#e53935;font-size:20px;">electric_bolt</span>
+            <div style="flex:1;">
+              <div style="font-weight:600;font-size:14px;">Critical: Potassium 6.2 mEq/L</div>
+              <div style="font-size:12px;color:var(--text-muted-light);">Blood Work Analysis · Oct 24, 2023</div>
+            </div>
+            <span class="badge badge-critical">Critical</span>
+          </div>
+          <div class="activity-item" onclick="window.navigateDashboard('dashboard')">
+            <div class="activity-dot" style="background:#e53935;"></div>
+            <span class="material-symbols-outlined" style="color:#e53935;font-size:20px;">glucose</span>
+            <div style="flex:1;">
+              <div style="font-weight:600;font-size:14px;">Critical: Glucose 245 mg/dL (Fasting)</div>
+              <div style="font-size:12px;color:var(--text-muted-light);">Blood Work Analysis · Oct 24, 2023</div>
+            </div>
+            <span class="badge badge-critical">Critical</span>
+          </div>
+          <div class="activity-item" onclick="window.navigateDashboard('trends')">
+            <div class="activity-dot" style="background:#19e66f;"></div>
+            <span class="material-symbols-outlined" style="color:#19e66f;font-size:20px;">trending_down</span>
+            <div style="flex:1;">
+              <div style="font-weight:600;font-size:14px;">LDL Cholesterol improved by 5% (110 mg/dL)</div>
+              <div style="font-size:12px;color:var(--text-muted-light);">Trend Analysis · May 22, 2024</div>
+            </div>
+            <span class="badge badge-success">Improving</span>
+          </div>
+          <div class="activity-item" onclick="window.navigateDashboard('chat')">
+            <div class="activity-dot" style="background:#6366f1;"></div>
+            <span class="material-symbols-outlined" style="color:#6366f1;font-size:20px;">smart_toy</span>
+            <div style="flex:1;">
+              <div style="font-weight:600;font-size:14px;">AI Chat: Prediabetes range discussion</div>
+              <div style="font-size:12px;color:var(--text-muted-light);">Medical AI Chat · Today, 10:23 AM</div>
+            </div>
+            <span class="badge" style="background:rgba(99,102,241,0.12);color:#4f46e5;">AI Chat</span>
+          </div>
+        </div>
+
+        <!-- Footer Disclaimer -->
+        <p style="text-align:center;font-size:11px;color:var(--text-muted-light);margin-top:32px;padding-bottom:16px;">
+          MedSimplify is for informational purposes only and does not replace professional medical advice. Always consult your physician.<br/>
+          © 2024 MedSimplify. Your data is encrypted and secure. · <a href="javascript:void(0)" onclick="window.navigateDashboard('settings')" style="color:var(--primary-dark);text-decoration:none;">Settings</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================================
+         IFRAME PAGES
+    ==================================== -->
+    <!-- Upload Report -->
+    <section class="page-section" id="page-upload">
+      <iframe src="../report_upload_processing/code.html" title="Upload Report" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-upload"></iframe>
+    </section>
+
+    <!-- AI Chat Assistant -->
+    <section class="page-section" id="page-chat">
+      <iframe src="../medical_assistant_chat/code.html" title="AI Chat Assistant" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-chat"></iframe>
+    </section>
+
+    <!-- Chat Interface -->
+    <section class="page-section" id="page-chat-interface">
+      <iframe src="../medical_assistant_chat_interface/code.html" title="Chat Interface" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-chat-interface"></iframe>
+    </section>
+
+    <!-- Health Dashboard (Critical) -->
+    <section class="page-section" id="page-dashboard">
+      <iframe src="../health_insights_dashboard_2/code.html" title="Health Dashboard" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-dashboard"></iframe>
+    </section>
+
+    <!-- Health Trends Timeline -->
+    <section class="page-section" id="page-trends">
+      <iframe src="../health_trends_timeline_1/code.html" title="Health Trends" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-trends"></iframe>
+    </section>
+
+    <!-- Critical Dashboard (Mobile) -->
+    <section class="page-section" id="page-critical">
+      <iframe src="../mobile_critical_dashboard/code.html" title="Critical Dashboard" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-critical"></iframe>
+    </section>
+
+    <!-- Biomarker Detail (ELI10) -->
+    <section class="page-section" id="page-biomarker">
+      <div class="coming-soon-screen">
+        <div style="width:60px;height:60px;border-radius:16px;background:linear-gradient(135deg,rgba(25,230,111,0.2),rgba(20,184,88,0.1));display:flex;align-items:center;justify-content:center;color:#14b858;font-size:32px;">
+          <span class="material-symbols-outlined" style="font-size:32px;">biotech</span>
+        </div>
+        <h2 style="font-size:26px;font-weight:800;color:var(--text-primary-light);">ELI10 Biomarker View</h2>
+        <p style="color:var(--text-muted-light);max-width:400px;font-size:15px;">Detailed biomarker explanations in child-friendly language. Here's a preview of the design:</p>
+        <img src="../eli10_detailed_biomarker_view/screen.png" alt="ELI10 Biomarker View Preview" style="max-width:min(560px,90vw);border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.15);"/>
+        <button onclick="window.showToast('🚀 Full interactive view coming soon!')" style="background:var(--primary);color:#0a1f12;border:none;padding:14px 32px;border-radius:12px;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;">
+          <span class="material-symbols-outlined">auto_awesome</span> Launch ELI10 Mode
+        </button>
+      </div>
+    </section>
+
+    <!-- Hindi Results -->
+    <section class="page-section" id="page-hindi">
+      <iframe src="../results_dashboard_hindi_version/code.html" title="Hindi Results Dashboard" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-hindi"></iframe>
+    </section>
+
+    <!-- Voice Mode -->
+    <section class="page-section" id="page-voice">
+      <iframe src="../voice_mode_with_karaoke_highlighting/code.html" title="Voice Mode" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-voice"></iframe>
+    </section>
+
+    <!-- High Contrast Landing -->
+    <section class="page-section" id="page-high-contrast">
+      <iframe src="../high_contrast_landing_page/code.html" title="High Contrast Mode" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-high-contrast"></iframe>
+    </section>
+
+    <!-- Settings -->
+    <section class="page-section" id="page-settings">
+      <iframe src="../settings_accessibility_configuration/code.html" title="Settings & Accessibility" style="width:100%;height:calc(100vh - 64px);border:none;display:block;" loading="lazy" id="iframe-settings"></iframe>
+    </section>
+
+  </main><!-- /#page-content -->
+</div><!-- /#main-wrapper -->
+</div><!-- /#app-shell -->
+
+<!-- Toast -->
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- App Script -->
+<script src="app.js"></script>
+<script>
+  // Expose navigate to inline onclick handlers
+  window.navigateDashboard = function(page) {
+    window.location.hash = page;
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<html lang="en"><head></head><body class="bg-background-light dark:bg-background-dark min-h-screen font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-critical/30">``` Krankheitsbericht - MedSimplify
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Critical Status Health Dashboard - MedSimplify</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --critical-red: #D32F2F;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19e66f",
+                        "critical": "#D32F2F",
+                        "background-light": "#fcf8f8",
+                        "background-dark": "#1a1111",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2a1c1c",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+
+
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-critical text-white">
+<span class="material-symbols-outlined !text-3xl">local_hospital</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">MedSimplify</h2>
+</div>
+<div class="flex flex-1 justify-end items-center gap-6">
+<div class="flex gap-3">
+<button class="flex items-center gap-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors px-4 py-2.5 text-sm font-bold text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined text-[20px]">translate</span>
+<span>English</span>
+</button>
+<button class="flex items-center gap-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors px-4 py-2.5 text-sm font-bold text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+<span>Listen</span>
+</button>
+</div>
+<div class="h-10 w-10 overflow-hidden rounded-full border-2 border-slate-200 dark:border-slate-700 bg-slate-200" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBu06nlVxH7Lol1kTZIOsSunYglDKycw__klfA9IfGQfg__Ee1oVDuei7tLsp-y195vQo7dnQ0oBcWOS1EUU-4PXwovGjAARh-Fl2DyG4y1qr0S_joEAgNf7hPvf1Jcv8yJnRZ789ry3LEgidSBOkazguejsDPDQCsdQEaRrVg4c3l8gY1g4nq1NWzJwRhWQAQRow0qSKyH79NteIKdIFMqHwlkg1hGRstVwuXwqvkyHLk5noygZJwwKBlng84-FZc_mYfce1H5kEg"); background-size: cover; background-position: center;'>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center py-8 px-6 lg:px-12">
+<div class="w-full max-w-[1024px] flex flex-col gap-8">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-slate-50">Health Analysis Report</h1>
+<p class="text-slate-500 dark:text-slate-400">Analysis from your blood work on Oct 24, 2023</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 relative overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark p-8 shadow-sm border border-red-100 dark:border-red-900/30">
+<div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-critical/5 to-transparent"></div>
+<div class="relative z-10 flex flex-col justify-between h-full gap-6">
+<div class="flex items-start justify-between">
+<div>
+<p class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Current Status</p>
+<div class="flex items-center gap-3">
+<h2 class="text-4xl font-bold text-[var(--critical-red)]">Critical</h2>
+<span class="inline-flex items-center gap-1 rounded-full bg-red-100 dark:bg-red-900/40 px-3 py-1 text-sm font-bold text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800">
+<span class="material-symbols-outlined text-base">warning</span>
+                                        Action Required
+                                    </span>
+</div>
+</div>
+<div class="flex flex-col items-center rounded-lg bg-red-50 dark:bg-red-900/10 p-4 border border-red-100 dark:border-red-900/20">
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">Health Score</span>
+<span class="text-3xl font-black text-critical">42<span class="text-lg text-slate-400 font-medium">/100</span></span>
+</div>
+</div>
+<p class="text-lg text-slate-700 dark:text-slate-300 max-w-lg leading-relaxed">
+                            Your recent lab results show significant deviations that require medical attention. We recommend scheduling an <strong>immediate consultation</strong> with your healthcare provider to discuss these findings and begin a personalized care plan.
+                        </p>
+</div>
+</div>
+<div class="flex flex-col rounded-xl bg-surface-light dark:bg-surface-dark p-6 shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-bold text-slate-900 dark:text-slate-50">Risk Assessment</h3>
+<button class="text-slate-400 hover:text-critical transition-colors">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Based on critical biomarkers detected.</p>
+<div class="flex flex-col gap-2 mb-4">
+<div class="relative h-4 w-full overflow-hidden rounded-full flex bg-slate-100 dark:bg-slate-800">
+<div class="h-full w-[40%] bg-green-500/30"></div>
+<div class="h-full w-[25%] bg-yellow-400/30"></div>
+<div class="h-full w-[20%] bg-orange-500/30"></div>
+<div class="h-full w-[15%] bg-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)] z-10"></div>
+<div class="absolute top-0 bottom-0 w-1.5 bg-slate-900 dark:bg-white border-x border-white/50 shadow-lg transform -translate-x-1/2" style="left: 92%;"></div>
+</div>
+<div class="flex justify-between text-xs font-medium text-slate-400 mt-1">
+<span>Stable</span>
+<span class="text-red-500 font-bold">Critical</span>
+</div>
+</div>
+<div class="mt-auto rounded-lg bg-red-50 dark:bg-red-900/20 p-3 text-sm text-slate-700 dark:text-red-200">
+                        You are in the <strong class="text-red-600 dark:text-red-400">High Priority</strong> zone for immediate clinical review.
+                    </div>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-slate-50">Biomarker Analysis</h2>
+<div class="flex gap-2">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-base">filter_list</span> Filter
+                        </span>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark border-l-4 border-l-critical shadow-sm transition-all hover:shadow-md">
+<div class="p-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+<div class="flex items-center gap-4">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30 text-critical">
+<span class="material-symbols-outlined">electric_bolt</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-50">Potassium (K+)</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Electrolyte Balance • Heart Rhythm</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="text-2xl font-bold text-critical">6.2 <span class="text-sm font-normal text-slate-500">mEq/L</span></p>
+<p class="text-xs text-slate-400">Ref: 3.5 - 5.1</p>
+</div>
+<span class="inline-flex items-center rounded-full bg-red-100 dark:bg-red-900/40 px-3 py-1 text-sm font-bold text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800">
+                                    Critical High
+                                </span>
+<button class="ml-2 h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">expand_less</span>
+</button>
+</div>
+</div>
+<div class="mt-6 border-t border-slate-100 dark:border-slate-800 pt-6">
+<div class="flex flex-col md:flex-row gap-6">
+<div class="flex-1 space-y-4">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+<span class="material-symbols-outlined text-critical">visibility</span>
+                                            What does this mean?
+                                        </h4>
+<label class="inline-flex items-center cursor-pointer gap-2">
+<span class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">ELI10 Mode</span>
+<div class="relative">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-critical"></div>
+</div>
+</label>
+</div>
+<p class="text-slate-600 dark:text-slate-300 leading-relaxed bg-slate-50 dark:bg-slate-800/50 p-4 rounded-lg">
+                                        Potassium is like the "battery" that helps your heart beat correctly. Right now, your battery has way too much power (6.2). Having too much potassium can make it hard for your heart to keep a steady beat, so we need to help your body lower it right away.
+                                    </p>
+<div class="flex gap-4 pt-2">
+<button class="flex items-center gap-2 text-sm font-semibold text-critical hover:text-red-400">
+<span class="material-symbols-outlined text-lg">play_circle</span>
+                                            Hear Explanation
+                                        </button>
+</div>
+</div>
+<div class="md:w-1/3 flex flex-col gap-3">
+<h4 class="font-bold text-slate-800 dark:text-slate-200">Immediate Action Required</h4>
+<div class="p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/50">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-critical shrink-0">emergency</span>
+<div>
+<p class="text-sm font-semibold text-red-800 dark:text-red-300">Call your Doctor Now</p>
+<p class="text-xs text-red-700/80 dark:text-red-400/70 mt-1">Contact your physician or go to the nearest urgent care immediately. Avoid high-potassium foods like bananas or avocados until you speak with a professional.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark border-l-4 border-l-critical shadow-sm transition-all hover:shadow-md cursor-pointer">
+<div class="p-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/30 text-critical">
+<span class="material-symbols-outlined">glucose</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-50">Glucose (Fasting)</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Metabolic Health • Blood Sugar</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="text-2xl font-bold text-critical">245 <span class="text-sm font-normal text-slate-500">mg/dL</span></p>
+<p class="text-xs text-slate-400">Ref: 70 - 99</p>
+</div>
+<span class="inline-flex items-center rounded-full bg-red-100 dark:bg-red-900/40 px-3 py-1 text-sm font-bold text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800">
+                                    Critical High
+                                </span>
+<button class="ml-2 h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-xl bg-surface-light dark:bg-surface-dark border-l-4 border-l-primary shadow-sm transition-all hover:shadow-md cursor-pointer opacity-80">
+<div class="p-6">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-slate-50">Hemoglobin</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Blood Health • Oxygen Transport</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="text-2xl font-bold text-slate-900 dark:text-slate-50">14.2 <span class="text-sm font-normal text-slate-500">g/dL</span></p>
+<p class="text-xs text-slate-400">Ref: 13.5 - 17.5</p>
+</div>
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/40 px-3 py-1 text-sm font-bold text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800">
+                                    Normal
+                                </span>
+<button class="ml-2 h-8 w-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

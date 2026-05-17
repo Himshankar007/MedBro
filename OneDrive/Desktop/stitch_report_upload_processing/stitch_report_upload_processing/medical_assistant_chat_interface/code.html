@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedSimplify - AI Medical Assistant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#197fe6",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                        "bubble-ai": "#E3F2FD",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-2xl">health_and_safety</span>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">MedSimplify</h1>
+<p class="text-xs font-medium text-primary uppercase tracking-wider">AI Medical Assistant</p>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-sm font-semibold text-primary" href="#">My Reports</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Consultations</a>
+<a class="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Profile</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="size-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-10 rounded-full overflow-hidden border-2 border-primary/20 bg-slate-200" data-alt="Portrait of a male patient smiling">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQb8Z_unWGr0HsLjxLDFjAXgscQffYEvsMtGD8fJ2_8nsqQ6Nte0idcSIsyooLp-PaI5H8s3PGmKp0XAlfoC4lAULNU0Jd4O6186CNmyQBT-EUsTjR4TdiuXKfgKM5jIo2zzJaes3SusPanWgTt_6Tj86Ujpx8bz2bZPSCYm_acfpLFaKGsMxkxjv2TfkRGV6qgNU7gY-UA1ZrU9UMHWh5_aCrJoX4Pi5rcgdw063Xk1x6NHAVukNgBRRQ77IoKQMJ3bFTtKS9uHU"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col max-w-5xl mx-auto w-full px-6 py-8 gap-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Ask about your report</h2>
+<div class="flex items-center gap-2 mt-2">
+<span class="inline-flex size-2 rounded-full bg-green-500"></span>
+<p class="text-slate-500 dark:text-slate-400 font-medium">Report Status: Comprehensive Analysis Complete</p>
+</div>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm">translate</span>
+<span class="text-sm font-medium text-slate-600 dark:text-slate-300">English</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">expand_more</span>
+</div>
+</div>
+<div class="flex-1 flex flex-col bg-white dark:bg-slate-900/50 rounded-xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+</div>
+<div class="flex flex-col gap-1.5 max-w-[80%]">
+<span class="text-xs font-bold text-slate-400 ml-1 uppercase tracking-widest">MedSimplify AI</span>
+<div class="bg-bubble-ai text-slate-800 px-6 py-4 rounded-2xl rounded-tl-none shadow-sm text-base leading-relaxed">
+                            Hello! I've analyzed your latest blood work from June 12th. Your glucose levels are slightly elevated (104 mg/dL). 
+                            <br/><br/>
+                            Would you like to discuss what this means or look at some personalized dietary suggestions to help manage it?
+                        </div>
+</div>
+</div>
+<div class="flex items-start flex-row-reverse gap-4">
+<div class="size-10 rounded-full overflow-hidden shrink-0 border-2 border-white bg-slate-200 shadow-sm" data-alt="Male user profile picture">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqxLDH9__G-LI20XgKTzmUcRX1b4wBL4wxtiSEkzizZ0pmBe7WjE17okJQM3angPBV2pEPZXaRj482y495yKkMiXuVnb3YN1yOdyO5rQzyGhQG9NDzYooHs9ge6RSmmlb7moDw-MFdGyvkvmOFdQjiTV6yaYmfU0ESf7MaeoHzXnR6jlWR_E-V3UE-T7CPSOu3iT-IoZ83mDGnFCYewqwd9IPRN3_koQdd2DY_vXIlEbTz3ekp8O3bN_Nl4ek6BkHM8yTWL4N-wvY"/>
+</div>
+<div class="flex flex-col gap-1.5 items-end max-w-[80%]">
+<span class="text-xs font-bold text-slate-400 mr-1 uppercase tracking-widest">You</span>
+<div class="bg-white border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 px-6 py-4 rounded-2xl rounded-tr-none shadow-sm text-base leading-relaxed">
+                            Yes, please explain the glucose levels. Is it dangerous?
+                        </div>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+</div>
+<div class="flex flex-col gap-1.5 max-w-[80%]">
+<span class="text-xs font-bold text-slate-400 ml-1 uppercase tracking-widest">MedSimplify AI</span>
+<div class="bg-bubble-ai text-slate-800 px-6 py-4 rounded-2xl rounded-tl-none shadow-sm text-base leading-relaxed">
+                            A level of 104 mg/dL is considered "prediabetes" range if taken while fasting, but it's not immediately dangerous. 
+                            <br/><br/>
+                            High glucose (hyperglycemia) means there is a bit more sugar in your blood than optimal. This can be caused by a recent meal, stress, or your body's insulin response. I recommend monitoring this over the next few weeks.
+                        </div>
+</div>
+</div>
+<div class="flex items-center gap-2 py-4">
+<div class="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">New Response</span>
+<div class="h-[1px] flex-1 bg-slate-200 dark:bg-slate-800"></div>
+</div>
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-900/80 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-wrap gap-2 mb-6">
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-primary hover:text-primary transition-all shadow-sm">
+                        Suggest a diet plan
+                    </button>
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-primary hover:text-primary transition-all shadow-sm">
+                        What should I ask my doctor?
+                    </button>
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-primary hover:text-primary transition-all shadow-sm">
+                        Explain LDL Cholesterol
+                    </button>
+<button class="px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-sm font-medium text-slate-700 dark:text-slate-300 hover:border-primary hover:text-primary transition-all shadow-sm">
+                        Next checkup date?
+                    </button>
+</div>
+<div class="relative flex items-center">
+<div class="absolute left-5 text-slate-400">
+<span class="material-symbols-outlined">attach_file</span>
+</div>
+<input class="w-full bg-white dark:bg-slate-800 border-none ring-1 ring-slate-200 dark:ring-slate-700 focus:ring-2 focus:ring-primary rounded-[24px] py-5 pl-14 pr-20 text-base shadow-inner dark:text-white placeholder:text-slate-400" placeholder="Type your question here..." type="text"/>
+<button class="absolute right-3 bg-primary hover:bg-primary/90 text-white size-12 rounded-full flex items-center justify-center shadow-lg shadow-primary/30 transition-all active:scale-95">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<p class="text-center text-[10px] text-slate-400 mt-4 uppercase tracking-widest font-medium">
+                    AI responses are for information only. Consult a physician for medical advice.
+                </p>
+</div>
+</div>
+</main>
+<footer class="py-6 text-center">
+<p class="text-xs text-slate-500 dark:text-slate-500 font-medium">© 2024 MedSimplify Health Systems. Human-centered AI Care.</p>
+</footer>
+</body></html>

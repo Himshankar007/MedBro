@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MedSimplify - Voice Mode</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#19e66f",
+                        "background-light": "#f6f8f7",
+                        "background-dark": "#112118",
+                        "accent-soft": "#C8E6C9",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+        .karaoke-active {
+            background-color: #C8E6C9;
+            border-radius: 4px;
+            padding: 0 4px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-6 lg:px-40 py-3 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined text-2xl font-bold">medical_services</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">MedSimplify</h2>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Reports</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium" href="#">Settings</a>
+</nav>
+<div class="flex gap-3">
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex size-10 cursor-pointer items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex flex-1 flex-col items-center px-4 py-8 lg:px-40">
+<div class="w-full max-w-4xl flex flex-col gap-8">
+<!-- Breadcrumbs & Header -->
+<div class="flex flex-col gap-4">
+<div class="flex items-center gap-2 text-slate-500 text-sm font-medium">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-slate-100">Voice Mode</span>
+</div>
+<div class="flex flex-wrap justify-between items-end gap-4">
+<div class="flex flex-col gap-1">
+<h1 class="text-slate-900 dark:text-slate-100 text-4xl font-black tracking-tight">Voice Mode</h1>
+<p class="text-slate-500 dark:text-slate-400 flex items-center gap-2">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                                    Listening to: Medical Report Summary
+                                </p>
+</div>
+<button class="flex items-center gap-2 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors text-slate-900 dark:text-slate-100 px-6 py-2.5 rounded-xl font-bold text-sm">
+<span class="material-symbols-outlined text-sm">close</span>
+                                Exit Voice Mode
+                            </button>
+</div>
+</div>
+<!-- Voice Interaction Center -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-8 lg:p-16 flex flex-col items-center text-center gap-12 min-h-[500px] justify-center relative overflow-hidden">
+<!-- Abstract Audio Waveform Decoration -->
+<div class="absolute inset-0 opacity-5 pointer-events-none flex items-center justify-center">
+<div class="w-full h-32 flex items-center justify-center gap-1">
+<div class="w-2 h-16 bg-primary rounded-full"></div>
+<div class="w-2 h-32 bg-primary rounded-full"></div>
+<div class="w-2 h-24 bg-primary rounded-full"></div>
+<div class="w-2 h-40 bg-primary rounded-full"></div>
+<div class="w-2 h-28 bg-primary rounded-full"></div>
+<div class="w-2 h-36 bg-primary rounded-full"></div>
+<div class="w-2 h-16 bg-primary rounded-full"></div>
+</div>
+</div>
+<!-- Language Switcher -->
+<div class="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl z-10">
+<button class="px-6 py-2 rounded-lg text-sm font-bold transition-all bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm">English</button>
+<button class="px-6 py-2 rounded-lg text-sm font-bold transition-all text-slate-500 dark:text-slate-400 hover:text-primary">Hindi</button>
+<button class="px-6 py-2 rounded-lg text-sm font-bold transition-all text-slate-500 dark:text-slate-400 hover:text-primary">Telugu</button>
+</div>
+<!-- Karaoke Highlight Area -->
+<div class="max-w-2xl z-10">
+<h2 class="text-3xl md:text-5xl font-bold leading-tight text-slate-900 dark:text-slate-100 transition-all duration-300">
+                                Your 
+                                <span class="bg-accent-soft dark:bg-primary/30 px-2 rounded-lg">cholesterol</span> 
+                                levels are slightly elevated but manageable.
+                            </h2>
+<p class="mt-6 text-xl text-slate-400 dark:text-slate-500 font-medium italic">
+                                Next: "Recommended lifestyle changes for lipid profile management"
+                            </p>
+</div>
+<!-- Playback Controls Container -->
+<div class="w-full max-w-xl flex flex-col gap-6 z-10">
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2">
+<div class="relative w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="absolute left-0 top-0 h-full bg-primary" style="width: 35%;"></div>
+</div>
+<div class="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
+<span>0:42</span>
+<span>2:15</span>
+</div>
+</div>
+<!-- Controls -->
+<div class="flex items-center justify-between">
+<!-- Speed Control -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">speed</span>
+<select class="bg-transparent border-none focus:ring-0 text-sm font-bold text-slate-600 dark:text-slate-400 cursor-pointer appearance-none">
+<option>1x Speed</option>
+<option selected="">1.25x Speed</option>
+<option>1.5x Speed</option>
+<option>2x Speed</option>
+</select>
+</div>
+<!-- Main Buttons -->
+<div class="flex items-center gap-6">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">replay_10</span>
+</button>
+<button class="flex size-16 items-center justify-center bg-primary text-background-dark rounded-full shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-4xl font-bold">pause</span>
+</button>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-3xl">forward_10</span>
+</button>
+</div>
+<!-- Volume / Extra -->
+<div class="flex items-center gap-2">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">volume_up</span>
+</button>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">transcribe</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Context Cards -->
+<div class="grid md:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="size-10 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">info</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-slate-100 mb-2">Why this matters?</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">High cholesterol increases the risk of heart disease and stroke by building up in arteries.</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="size-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-slate-100 mb-2">Actionable Tip</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">Incorporate more soluble fiber like oats and beans into your daily diet.</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800">
+<div class="size-10 bg-amber-50 dark:bg-amber-900/20 text-amber-600 rounded-lg flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">question_mark</span>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-slate-100 mb-2">Common Terms</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400">LDL is "bad" cholesterol, while HDL is considered "good" cholesterol.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Meta -->
+<footer class="px-6 lg:px-40 py-10 border-t border-slate-200 dark:border-slate-800 mt-12">
+<div class="flex flex-wrap justify-between items-center gap-6">
+<p class="text-slate-400 text-sm">© 2024 MedSimplify AI. For informational purposes only.</p>
+<div class="flex gap-6">
+<a class="text-slate-400 hover:text-primary text-sm transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-primary text-sm transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-primary text-sm transition-colors" href="#">Medical Disclaimer</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>
